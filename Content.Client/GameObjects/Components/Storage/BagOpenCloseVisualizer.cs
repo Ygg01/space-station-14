@@ -7,8 +7,6 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Manager.Attributes;
-using Robust.Shared.Utility;
-using YamlDotNet.RepresentationModel;
 using static Robust.Shared.Utility.SpriteSpecifier;
 
 namespace Content.Client.GameObjects.Components.Storage
