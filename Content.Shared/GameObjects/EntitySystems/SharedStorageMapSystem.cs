@@ -9,7 +9,7 @@ using Robust.Shared.GameObjects;
 namespace Content.Shared.GameObjects.EntitySystems
 {
     [UsedImplicitly]
-    internal sealed class SharedStorageMapSystem : EntitySystem
+    public abstract class SharedStorageMapSystem : EntitySystem
     {
         /// <inheritdoc />
         public override void Initialize()
@@ -32,19 +32,10 @@ namespace Content.Shared.GameObjects.EntitySystems
             UpdateSprite(args, true);
         }
 
-        private static void UpdateSprite(ContainerModifiedMessage args, bool show)
-        {
-            if (args.Container.Owner.TryGetComponent(out SharedAppearanceComponent? appearanceComponent)
-                && args.Container.Owner.TryGetComponent(out SharedStorageMapComponent? storageMapComponent)
-                && storageMapComponent.TryFindEntity(args.Entity, out var layer))
-            {
-                appearanceComponent.SetData(StorageMapVisual.LayerName, layer);
-                appearanceComponent.SetData(StorageMapVisual.Show, show);
-            }
-        }
+        protected abstract void UpdateSprite(ContainerModifiedMessage args, bool show);
     }
 
-    internal static class StorageMapHelper
+    public static class StorageMapHelper
     {
         public static bool TryFindEntity(this SharedStorageMapComponent self, IEntity entity,
             [NotNullWhen(true)] out string? layer)
