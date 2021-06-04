@@ -16,16 +16,8 @@ namespace Content.Shared.GameObjects.EntitySystems
         {
             base.Initialize();
 
-            SubscribeLocalEvent<SharedStorageMapComponent, ComponentStartup>(InitializeVisualizer);
             SubscribeLocalEvent<SharedStorageMapComponent, EntInsertedIntoContainerMessage>(HandleEntityInsert);
             SubscribeLocalEvent<SharedStorageMapComponent, EntRemovedFromContainerMessage>(HandleEntityRemoved);
-        }
-
-        private void InitializeVisualizer(EntityUid uid, SharedStorageMapComponent component, ComponentStartup args)
-        {
-            if (!ComponentManager.TryGetComponent(uid, out SharedAppearanceComponent? appearance))
-                return;
-            appearance.SetData(StorageMapVisual.AllLayers, component.SpriteLayers);
         }
 
         private void HandleEntityRemoved(EntityUid uid, SharedStorageMapComponent component,
@@ -37,7 +29,7 @@ namespace Content.Shared.GameObjects.EntitySystems
         private void HandleEntityInsert(EntityUid uid, SharedStorageMapComponent component,
             EntInsertedIntoContainerMessage args)
         {
-            // UpdateSprite(args, true);
+            UpdateSprite(args, true);
         }
 
         private static void UpdateSprite(ContainerModifiedMessage args, bool show)
@@ -47,7 +39,7 @@ namespace Content.Shared.GameObjects.EntitySystems
                 && storageMapComponent.TryFindEntity(args.Entity, out var layer))
             {
                 appearanceComponent.SetData(StorageMapVisual.LayerName, layer);
-                appearanceComponent.SetData(StorageMapVisual.Show, true);
+                appearanceComponent.SetData(StorageMapVisual.Show, show);
             }
         }
     }

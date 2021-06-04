@@ -17,7 +17,8 @@ namespace Content.Server
             "RadiatingLight",
             "Icon",
             "ClientEntitySpawner",
-            "ToySingularity"
+            "ToySingularity",
+            "StorageMap",
         };
     }
 }

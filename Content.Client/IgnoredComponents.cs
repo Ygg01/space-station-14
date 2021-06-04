@@ -258,7 +258,6 @@ namespace Content.Client
             "ExplosionLaunched",
             "BeingCloned",
             "Advertise",
-            "StorageMap",
         };
     }
 }

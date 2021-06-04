@@ -32,8 +32,17 @@ namespace Content.Shared.GameObjects.Components.Storage
                     allLayers.Add(mapLayer._layer);
                 }
             }
-
             SpriteLayers = allLayers;
+
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            if (!Owner.TryGetComponent(out SharedAppearanceComponent? appearance))
+                return;
+            appearance.SetData(StorageMapVisual.AllLayers, SpriteLayers);
         }
     }
 }
