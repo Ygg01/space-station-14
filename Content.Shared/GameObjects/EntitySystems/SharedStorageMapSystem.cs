@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Content.Shared.GameObjects.Components;
 using Content.Shared.GameObjects.Components.Storage;
 using Content.Shared.GameObjects.Components.Tag;
 using JetBrains.Annotations;

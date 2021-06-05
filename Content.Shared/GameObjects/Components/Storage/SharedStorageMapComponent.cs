@@ -9,6 +9,7 @@ namespace Content.Shared.GameObjects.Components.Storage
     public abstract class SharedStorageMapComponent : Component, ISerializationHooks
     {
         public override string Name => "StorageMap";
+        public sealed override uint? NetID => 9999;
 
         [DataField("mapLayers")] public readonly List<LayerProperties> _mapLayers = new();
         public IReadOnlyList<string> SpriteLayers = new List<string>();
