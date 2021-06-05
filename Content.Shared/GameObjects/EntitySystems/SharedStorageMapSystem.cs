@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Content.Shared.GameObjects.Components;
 using Content.Shared.GameObjects.Components.Storage;
 using Content.Shared.GameObjects.Components.Tag;
 using JetBrains.Annotations;
@@ -8,7 +9,7 @@ using Robust.Shared.GameObjects;
 namespace Content.Shared.GameObjects.EntitySystems
 {
     [UsedImplicitly]
-    public abstract class SharedStorageMapSystem : EntitySystem
+    public class SharedStorageMapSystem : EntitySystem
     {
         /// <inheritdoc />
         public override void Initialize()
@@ -31,7 +32,17 @@ namespace Content.Shared.GameObjects.EntitySystems
             UpdateSprite(args, true);
         }
 
-        protected abstract void UpdateSprite(ContainerModifiedMessage args, bool show);
+
+        protected void UpdateSprite(ContainerModifiedMessage args, bool show)
+        {
+            if (args.Container.Owner.TryGetComponent(out SharedAppearanceComponent? appearanceComponent)
+                && args.Container.Owner.TryGetComponent(out SharedStorageMapComponent? storageMapComponent)
+                && storageMapComponent.TryFindEntity(args.Entity, out var layer))
+            {
+                appearanceComponent.SetData(StorageMapVisual.LayerName, layer);
+                appearanceComponent.SetData(StorageMapVisual.Show, show);
+            }
+        }
     }
 
     public static class StorageMapHelper
@@ -46,13 +57,13 @@ namespace Content.Shared.GameObjects.EntitySystems
                     && layerProp.Id != null
                     && layerProp.Id.Contains(entityId))
                 {
-                    layer = layerProp._layer;
+                    layer = layerProp.Layer;
                     return true;
                 }
 
                 if (layerProp.Tags != null && entity.HasAnyTag(layerProp.Tags))
                 {
-                    layer = layerProp._layer;
+                    layer = layerProp.Layer;
                     return true;
                 }
             }

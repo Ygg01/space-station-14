@@ -9,7 +9,6 @@ namespace Content.Shared.GameObjects.Components.Storage
     public abstract class SharedStorageMapComponent : Component, ISerializationHooks
     {
         public override string Name => "StorageMap";
-        public sealed override uint? NetID => 9999;
 
         [DataField("mapLayers")] public readonly List<LayerProperties> _mapLayers = new();
         public IReadOnlyList<string> SpriteLayers = new List<string>();
@@ -18,7 +17,7 @@ namespace Content.Shared.GameObjects.Components.Storage
         [DataDefinition]
         public struct LayerProperties
         {
-            [DataField("layer")] public string _layer;
+            [DataField("layer")] public string Layer;
             [DataField("ids")] public List<string>? Id { get; set; }
             [DataField("tags")] public List<string>? Tags { get; set; }
         }
@@ -28,13 +27,12 @@ namespace Content.Shared.GameObjects.Components.Storage
             var allLayers = new List<string>();
             foreach (var mapLayer in _mapLayers)
             {
-                if (!allLayers.Contains(mapLayer._layer))
+                if (!allLayers.Contains(mapLayer.Layer))
                 {
-                    allLayers.Add(mapLayer._layer);
+                    allLayers.Add(mapLayer.Layer);
                 }
             }
             SpriteLayers = allLayers;
-
         }
 
         public override void Initialize()
