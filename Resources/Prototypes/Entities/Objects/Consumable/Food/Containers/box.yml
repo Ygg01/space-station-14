@@ -27,7 +27,7 @@
         amount: 3
       - id: FoodDonutPlain
         amount: 3
-  - type: StorageCounter
+  - type: ItemCounter
     countTag: Donut
   - type: Appearance
     visuals:
@@ -64,7 +64,7 @@
     contents:
       - id: FoodEgg
         amount: 12
-  - type: StorageCounter
+  - type: ItemCounter
     countTag: Egg
   - type: Appearance
     visuals:
@@ -232,7 +232,7 @@
     contents:
       - id: FoodBakedNugget
         amount: 6
-  - type: StorageCounter
+  - type: ItemCounter
     countTag: Nugget
   - type: Appearance
     visuals:

@@ -18,7 +18,7 @@ namespace Content.Server
             "Icon",
             "ClientEntitySpawner",
             "ToySingularity",
-            "StorageMap",
+            "ItemCounter",
         };
     }
 }

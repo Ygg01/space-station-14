@@ -141,8 +141,6 @@
     capacity: 7
   - type: Item
     size: 9999
-  - type: StorageCounter
-    countTag: Crayon
   - type: StorageFill
     contents:
     - id: CrayonRed
@@ -152,7 +150,7 @@
     - id: CrayonBlue
     - id: CrayonPurple
     - id: CrayonBlack
-  - type: StorageMap
+  - type: ItemCounter
     mapLayers:
       - layer: red_box
         ids: [ CrayonRed ]
@@ -169,6 +167,5 @@
       - layer: black_box
         ids: [ CrayonBlack ]
   - type: Appearance
-#    netsync: false
     visuals:
     - type: MappedItemVisualizer

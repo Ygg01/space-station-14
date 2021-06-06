@@ -6,9 +6,12 @@ using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Shared.GameObjects.Components.Storage
 {
-    public abstract class SharedStorageMapComponent : Component, ISerializationHooks
+    public abstract class SharedItemCounterComponent : Component, ISerializationHooks
     {
-        public override string Name => "StorageMap";
+        public override string Name => "ItemCounter";
+
+        [DataField("countTag")] public string? _countTag;
+        [DataField("amount")] private int? _maxAmount;
 
         [DataField("mapLayers")] public readonly List<LayerProperties> _mapLayers = new();
         public IReadOnlyList<string> SpriteLayers = new List<string>();
@@ -32,6 +35,7 @@ namespace Content.Shared.GameObjects.Components.Storage
                     allLayers.Add(mapLayer.Layer);
                 }
             }
+
             SpriteLayers = allLayers;
         }
 
@@ -41,7 +45,15 @@ namespace Content.Shared.GameObjects.Components.Storage
 
             if (!Owner.TryGetComponent(out SharedAppearanceComponent? appearance))
                 return;
-            appearance.SetData(StorageMapVisual.AllLayers, SpriteLayers);
+            if (SpriteLayers.Count > 0)
+            {
+                appearance.SetData(StorageMapVisual.AllLayers, SpriteLayers);
+            }
+
+            if (_maxAmount != null)
+            {
+                appearance.SetData(StackVisuals.MaxCount, _maxAmount);
+            }
         }
     }
 }

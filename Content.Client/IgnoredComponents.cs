@@ -164,7 +164,6 @@ namespace Content.Client
             "Firelock",
             "AtmosPlaque",
             "Spillable",
-            "StorageCounter",
             "SpaceVillainArcade",
             "Flammable",
             "CreamPie",

@@ -4,8 +4,8 @@ using Robust.Shared.GameObjects;
 namespace Content.Client.GameObjects.Components.Storage
 {
     [RegisterComponent]
-    [ComponentReference(typeof(SharedStorageMapComponent))]
-    public class StorageMapComponent : SharedStorageMapComponent
+    [ComponentReference(typeof(SharedItemCounterComponent))]
+    public class ItemCounterComponent : SharedItemCounterComponent
     {
 
     }

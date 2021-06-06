@@ -12,7 +12,7 @@
       contents:
         - id: Cigarette
           amount: 6
-    - type: StorageCounter
+    - type: ItemCounter
       countTag: Cigarette
     - type: Appearance
       visuals:
