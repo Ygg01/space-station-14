@@ -41,6 +41,7 @@ namespace Content.Shared.GameObjects.EntitySystems
             {
                 appearanceComponent.SetData(StorageMapVisual.LayerName, layer);
                 appearanceComponent.SetData(StorageMapVisual.Show, show);
+                args.Entity.Dirty();
             }
         }
     }

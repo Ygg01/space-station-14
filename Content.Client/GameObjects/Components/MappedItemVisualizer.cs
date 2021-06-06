@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Content.Shared.GameObjects.Components;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -36,6 +37,10 @@ namespace Content.Client.GameObjects.Components
             if (component.Owner.TryGetComponent<ISpriteComponent>(out var spriteComponent)
                 && component.TryGetData<List<string>>(StorageMapVisual.AllLayers, out var layers))
             {
+                // prevent multiple updates
+                if (_spriteLayers.SequenceEqual(layers))
+                    return;
+
                 if (_spriteLayers.Count <= 0)
                 {
                     _spriteLayers = layers;

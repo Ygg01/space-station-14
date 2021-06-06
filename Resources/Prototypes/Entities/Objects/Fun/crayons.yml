@@ -169,6 +169,6 @@
       - layer: black_box
         ids: [ CrayonBlack ]
   - type: Appearance
-    netsync: false
+#    netsync: false
     visuals:
     - type: MappedItemVisualizer
