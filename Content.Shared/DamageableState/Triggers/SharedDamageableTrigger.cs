@@ -1,7 +1,7 @@
 ﻿using System;
 using Robust.Shared.Serialization.Manager.Attributes;
 
-namespace Content.Shared.DamageableState
+namespace Content.Shared.DamageableState.Triggers
 {
     /// <summary>
     ///     A trigger that will activate when the amount of damage received
@@ -15,11 +15,23 @@ namespace Content.Shared.DamageableState
         ///     The amount of damage at which this threshold will trigger.
         /// </summary>
         [DataField("damage")]
-        public int Damage { get; set; }
+        public int Damage { get; private set; }
 
         public SharedDamageableTrigger(int damage)
         {
             Damage = damage;
+        }
+
+        /// <inheritdoc />
+        int IDamageableTrigger.GetDamage()
+        {
+            return Damage;
+        }
+
+        /// <inheritdoc />
+        IDamageCategory IDamageableTrigger.GetDamageCategory()
+        {
+            return IDamageCategory.AnyDamage;
         }
     }
 }

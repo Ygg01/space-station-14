@@ -1,6 +1,8 @@
-﻿namespace Content.Shared.DamageableState
+﻿namespace Content.Shared.DamageableState.Triggers
 {
     public interface IDamageableTrigger
     {
+        public int GetDamage();
+        IDamageCategory GetDamageCategory();
     }
 }

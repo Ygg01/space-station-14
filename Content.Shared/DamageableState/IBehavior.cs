@@ -2,7 +2,7 @@
 {
     public interface IBehavior
     {
-        void Execute();
-        void Revert() { }
+        void OnEnter();
+        void OnExit();
     }
 }
