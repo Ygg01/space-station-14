@@ -90,8 +90,11 @@ namespace Content.Server.Nutrition.EntitySystems
             }
 
             var color = IsEmpty(uid, component) ? "gray" : "yellow";
-            var openedText =
-                Loc.GetString(IsEmpty(uid, component) ? "drink-component-on-examine-is-empty" : "drink-component-on-examine-is-opened");
+            var openedText = Loc.GetString("drink-component-on-examine-details-volume",
+                ("entity", EntityManager.GetComponent<MetaDataComponent>(component.Owner).EntityName),
+                ("currentVolume", _solutionContainerSystem.DrainAvailable(uid).Float())
+            );
+
             args.Message.AddMarkup($"\n{Loc.GetString("drink-component-on-examine-details-text", ("colorName", color), ("text", openedText))}");
         }
 
