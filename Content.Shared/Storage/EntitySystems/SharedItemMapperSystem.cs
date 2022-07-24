@@ -18,6 +18,11 @@ namespace Content.Shared.Storage.EntitySystems
 
         private void InitLayers(EntityUid uid, ItemMapperComponent component, ComponentInit args)
         {
+            foreach (var (layerName, val) in component.MapLayers)
+            {
+                val.Layer = layerName;
+            }
+
             if (EntityManager.TryGetComponent(component.Owner, out AppearanceComponent? appearanceComponent))
             {
                 var list = new List<string>(component.MapLayers.Keys);
